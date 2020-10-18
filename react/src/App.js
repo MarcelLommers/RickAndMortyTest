@@ -9,59 +9,21 @@ import './App.scss';
 
 import { Nav } from './layout'
 
-import { Home, Show, Episode } from './pages'
+import PlumbusPage from "./RickAndMorty/pages/PlumbusPage";
 
+import CharacterPage from './RickAndMorty/pages/CharacterPage.js'
 import CharactersPage from './RickAndMorty/pages/CharactersPage.js'
+
+import LocationPage from './RickAndMorty/pages/LocationPage.js'
 import LocationsPage from './RickAndMorty/pages/LocationsPage.js'
+
+import EpisodePage from './RickAndMorty/pages/EpisodePage.js'
 import EpisodesPage from './RickAndMorty/pages/EpisodesPage.js'
 
 export default class App extends React.Component {
 
-  state = {
-    showId: 6771,
-    season: 1,
-    episode: 1
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showId: 6771,
-      season: 1,
-      episode: 1
-    };
-
-    this.setShowId = this.setShowId.bind(this);
-    this.setSeason = this.setSeason.bind(this);
-    this.setEpisode = this.setEpisode.bind(this);
-  }
-
-  setShowId(newShowId) {
-    this.setState({
-      showId: newShowId,
-      season: 1,
-      episode: 1
-    });
-    console.log(newShowId);
-    alert('ShowId was set to: ' + newShowId);
-  }
-
-  setSeason(newSeason) {
-    this.setState({
-      season: newSeason
-    });
-    console.log(newSeason);
-  }
-
-  setEpisode(newEpisode) {
-    this.setState({
-      episode: newEpisode
-    });
-    console.log(newEpisode);
-  }
-
   render () {
+
     return (
       <Router>
         <div className='app'>
@@ -71,39 +33,27 @@ export default class App extends React.Component {
           <div className='content'>
 
             <Switch>
-              <Route path="/show">
-                <Show
-                  showId={ this.state.showId }
-                  setSeasonHandler={ this.setSeason }
-                  setEpisodeHandler={ this.setEpisode }
-                />
-              </Route>
-              <Route path="/episode">
-                <Episode
-                  showId={ this.state.showId }
-                  season={ this.state.season}
-                  episode={ this.state.episode}
-                />
-              </Route>
-              <Route path="/characters">
-                <CharactersPage />
-              </Route>
-              <Route path="/episodes">
-                <EpisodesPage />
-              </Route>
-              <Route path="/locations">
-                <LocationsPage />
-              </Route>
-              <Route path="/">
-                <Home
-                  showId={ this.state.showId }
-                  season={ this.state.season}
-                  episode={ this.state.episode}
-                  setShowIdHandler={ this.setShowId }
-                  setSeasonHandler={ this.setSeason }
-                  setEpisodeHandler={ this.setEpisode }
-                />
-              </Route>
+              <Route path="/characters"
+                     component={ CharactersPage }
+              />
+              <Route path="/character/:characterId"
+                     component={ CharacterPage }
+              />
+              <Route path="/episodes"
+                     component={ EpisodesPage }
+              />
+              <Route path="/episode/:episodeId"
+                     component={ EpisodePage }
+              />
+              <Route path="/locations"
+                     component={ LocationsPage }
+              />
+              <Route path="/location/:locationId"
+                     component={ LocationPage }
+              />
+              <Route path="/"
+                     component={ PlumbusPage }
+              />
             </Switch>
           </div>
         </div>

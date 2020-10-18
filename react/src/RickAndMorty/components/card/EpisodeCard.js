@@ -1,11 +1,11 @@
 import React from 'react';
 
-import BaseApi from "../../api/BaseApi";
 import EpisodeApi from "../../api/EpisodeApi";
 
 import '../../css/card/EpisodeCard.scss';
 
 import Card from "./Card"
+import {Link} from "react-router-dom";
 
 export default class EpisodeCard extends React.Component {
 
@@ -26,8 +26,6 @@ export default class EpisodeCard extends React.Component {
 		this.state = {
 			episodeId: props.episodeId || 1
 		};
-
-		this.goToEpisode = this.goToEpisode.bind(this);
 	}
 
 	async componentDidMount() {
@@ -38,12 +36,6 @@ export default class EpisodeCard extends React.Component {
 			episode,
 			loading: true
 		});
-	}
-
-	goToEpisode (e) {
-		e.stopPropagation();
-		// this.setSeasonHandler(episode.season)
-		// this.setEpisodeHandler(episode.number)
 	}
 
 	render (props) {
@@ -61,11 +53,18 @@ export default class EpisodeCard extends React.Component {
 		) {
 			headContent =
 				<div className='card-header'>
-					<label className='name'
-					 onClick={ this.goToOrigin }
+
+					<Link className='name'
+								title={ this.state.episode.name }
+								to={{
+									pathname: "episode/" + this.state.episode.id,
+									state: {
+										episodeId: this.state.episode.id
+									}
+								}}
 					>
 						{ this.state.episode.name }
-					</label>
+					</Link>
 
 				</div>
 

@@ -5,6 +5,7 @@ import LocationApi from "../../api/LocationApi";
 import '../../css/card/LocationCard.scss';
 
 import Card from "./Card"
+import {Link} from "react-router-dom";
 
 export default class LocationCard extends React.Component {
 
@@ -31,8 +32,6 @@ export default class LocationCard extends React.Component {
 				residents: []
 			}
 		};
-
-		this.goToLocation = this.goToLocation.bind(this);
 	}
 
 	async componentDidMount() {
@@ -49,12 +48,6 @@ export default class LocationCard extends React.Component {
 		});
 	}
 
-	goToLocation (e) {
-		e.stopPropagation();
-		// this.setSeasonHandler(episode.season)
-		// this.setEpisodeHandler(episode.number)
-	}
-
 	render (props) {
 		let headContent = <div className='card-header' />;
 		let bodyContent;
@@ -67,9 +60,17 @@ export default class LocationCard extends React.Component {
 		} else {
 			headContent =
 				<div className='card-header'>
-					<label className='name'>
+					<Link className='name'
+								title={ this.state.location.name }
+								to={{
+									pathname: "location/" + this.state.location.id,
+									state: {
+										locationId: this.state.location.id
+									}
+								}}
+					>
 						{ this.state.location.name }
-					</label>
+					</Link>
 
 					<label className='dimension'
 						 title={ this.state.location.dimension }

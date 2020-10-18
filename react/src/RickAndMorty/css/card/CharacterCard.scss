@@ -1,6 +1,4 @@
 .character-card {
-  display: inline-block;
-  border: 1px solid #58585b;
   border-radius: 5px;
   cursor: pointer;
   min-height: 80px;
@@ -16,18 +14,19 @@
   .card-header {
     display: flex;
     background-color: #97ce4c;
-    color: white;
     padding: 2px 10px;
     height: 25px;
     align-items: center;
     justify-content: space-between;
 
     .name {
-      font-size: 18px;
+      color: white;
       cursor: pointer;
+      font-size: 18px;
     }
 
     .origin {
+      color: white;
       cursor: pointer;
       flex: 1 1;
       text-indent: 10px;
@@ -43,6 +42,7 @@
     }
 
     .species {
+      color: white;
       text-align: right;
       font-size: 13px;
     }

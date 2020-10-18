@@ -67,7 +67,6 @@ export default class CharactersPage extends React.Component {
 		})
 	}
 
-
 	render (props) {
 		if (this.loading ) {
 			return <span>Loading...</span>

@@ -6,6 +6,7 @@ import CharacterApi from "../../api/CharacterApi";
 import '../../css/card/CharacterCard.scss';
 
 import Card from "./Card"
+import { Link } from "react-router-dom";
 
 export default class CharacterCard extends React.Component {
 
@@ -49,10 +50,6 @@ export default class CharacterCard extends React.Component {
 				url: ''
 			}
 		};
-
-		this.goToCharacter = this.goToCharacter.bind(this);
-		this.goToOrigin = this.goToOrigin.bind(this);
-		this.goToLocation = this.goToLocation.bind(this);
 	}
 
 	async componentDidMount() {
@@ -76,22 +73,6 @@ export default class CharacterCard extends React.Component {
 		});
 	}
 
-	goToCharacter (e) {
-		e.stopPropagation();
-		// this.setSeasonHandler(episode.season)
-		// this.setEpisodeHandler(episode.number)
-	}
-	goToOrigin (e) {
-		e.stopPropagation();
-		// this.setSeasonHandler(episode.season)
-		// this.setEpisodeHandler(episode.number)
-	}
-	goToLocation (e) {
-		e.stopPropagation();
-		// this.setSeasonHandler(episode.season)
-		// this.setEpisodeHandler(episode.number)
-	}
-
 	render (props) {
 		let headContent = <div className='card-header' />;
 		let bodyContent;
@@ -107,18 +88,32 @@ export default class CharacterCard extends React.Component {
 		) {
 			headContent =
 				<div className='card-header'>
-					<label className='name'>
+					<Link className='name'
+								title={ this.state.character.name }
+								to={{
+									pathname: "character/" + this.state.character.id,
+									state: {
+										characterId: this.state.character.id
+									}
+								}}
+					>
 						{ this.state.character.name }
-					</label>
+					</Link>
 
 					{
 						this.state.origin &&
-						<label className='origin'
-									 title={ this.state.origin.name }
-									 onClick={ this.goToOrigin }
+						<Link className='origin'
+						 			title={ this.state.origin.name }
+									to={{
+										pathname: "location/" + this.state.origin.id,
+										state: {
+											locationId: this.state.origin.id
+										}
+									}}
+									replace
 						>
 							{ this.state.origin.name }
-						</label>
+						</Link>
 					}
 
 				<span className='species'>
@@ -133,15 +128,11 @@ export default class CharacterCard extends React.Component {
 					/>
 
 					<div className='profile'>
-						<label className='location'
-									 onClick={ this.goToOrigin }
-						>
+						<label className='location'>
 							<b>Dimension of origin: </b><br/>
 							{ this.state.origin.name || 'unknown' }
 						</label>
-						<label className='location'
-									 onClick={ this.goToLocation }
-						>
+						<label className='location'>
 							<b>Last known Location: </b><br />
 							{ this.state.location.name || 'unknown' }
 						</label>
@@ -161,10 +152,10 @@ export default class CharacterCard extends React.Component {
 
 		return (
 			<Card className='character-card'
-				loading={ this.loading }
-				goToTarget={ this.goToCharacter }
-				headContent={ headContent }
-				bodyContent={ bodyContent }
+						loading={ this.loading }
+						goToTarget={ this.goToCharacter }
+						headContent={ headContent }
+						bodyContent={ bodyContent }
 			>
 			</Card>
 		)
