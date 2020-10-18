@@ -1,0 +1,46 @@
+.episode-card {
+  border: 1px solid #58585b;
+  border-radius: 5px;
+  min-height: 80px;
+  margin: 5px 5px 20px 5px;
+  text-align: left;
+  overflow: hidden;
+  width: 400px;
+
+  -webkit-box-shadow: 3px 2px 22px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 2px 22px -4px rgba(0,0,0,0.75);
+  box-shadow: 3px 2px 22px -4px rgba(0,0,0,0.75);
+
+  .card-header {
+    display: flex;
+    background-color: #97ce4c;
+    color: white;
+    padding: 2px 10px;
+    height: 25px;
+    align-items: center;
+    justify-content: space-between;
+
+    .name {
+      cursor: pointer;
+      font-size: 18px;
+
+      &:hover {
+        color: #eeeeee;
+      }
+    }
+  }
+
+  .card-content {
+    display: flex;
+    font-size: 13px;
+    flex: 1 1;
+    padding: 10px 15px 20px;
+    overflow-y: auto;
+
+    .profile {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

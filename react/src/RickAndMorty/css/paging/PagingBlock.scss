@@ -1,0 +1,15 @@
+.paging-block {
+  display: flex;
+  align-items: center;
+
+  .current-page {
+    width: 60px;
+  }
+  .total-pages {
+    margin-left: 5px;
+  }
+
+  .nav-button {
+    margin: 5px;
+  }
+}
