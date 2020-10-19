@@ -11,7 +11,6 @@ import CharacterCard from "../components/card/CharacterCard";
 export default class EpisodePage extends React.Component {
 
 	state = {
-		loading: true,
 		episodeData: {
 			id: 1,
 			characters: []
@@ -35,7 +34,6 @@ export default class EpisodePage extends React.Component {
 		}
 
 		this.setState({
-			loading: false,
 			episode: episode,
 			characterList: updatedList
 		});

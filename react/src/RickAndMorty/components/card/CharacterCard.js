@@ -60,12 +60,19 @@ export default class CharacterCard extends React.Component {
 			character
 		});
 
-		const origin = await BaseApi.fetchFromUrl({
-			targetUrl: this.state.character.origin.url
-		});
-		const location = await BaseApi.fetchFromUrl({
-			targetUrl: this.state.character.location.url
-		});
+		let origin = {};
+		let location = {};
+
+		if (this.state.character.origin?.url) {
+			origin = await BaseApi.fetchFromUrl({
+				targetUrl: this.state.character.origin.url
+			});
+		}
+		if (this.state.character.location?.url) {
+			location = await BaseApi.fetchFromUrl({
+				targetUrl: this.state.character.location.url
+			});
+		}
 		this.setState({
 			origin,
 			location,
